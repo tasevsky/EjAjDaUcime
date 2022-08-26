@@ -11,4 +11,5 @@ interface UserRepository : JpaRepository<User?, String?> {
     fun findByUsernameAndPassword(username: String?, password: String?): Optional<User?>?
     fun findByUsername(username: String?): Optional<User?>?
     fun findByUsernameIgnoreCase(username: String): User?
+    fun findById(id: Long): User?
 }

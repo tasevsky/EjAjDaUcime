@@ -5,11 +5,13 @@ import mk.ukim.finki.ejajdaucime.model.Role
 import mk.ukim.finki.ejajdaucime.model.User
 import mk.ukim.finki.ejajdaucime.model.exception.InvalidUsernameOrPasswordException
 import mk.ukim.finki.ejajdaucime.model.exception.PasswordsDoNotMatchException
+import mk.ukim.finki.ejajdaucime.model.exception.UserNotExistingException
 import mk.ukim.finki.ejajdaucime.model.exception.UsernameAlreadyExistsException
 import mk.ukim.finki.ejajdaucime.repository.UserRepository
 import mk.ukim.finki.ejajdaucime.security.UserDetailsServiceImpl
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import javax.transaction.Transactional
 
 
 @Service
@@ -17,7 +19,7 @@ class UserServiceImpl(userRepository: UserRepository) :
     UserDetailsServiceImpl(userRepository) {
     private val passwordEncoder: PasswordEncoder = getEncoder()
 
-   fun register(
+    fun register(
         username: String?,
         email: String,
         password: String?,
@@ -31,4 +33,18 @@ class UserServiceImpl(userRepository: UserRepository) :
         return userRepository.save(user)
     }
 
+
+    @Transactional
+    fun edit(
+        id: Long,
+        username: String,
+        email: String,
+        password: String,
+        repeatedPassword: String?,
+        role: Role
+    ): User? {
+        val user = userRepository.findById(id)
+        if (password != repeatedPassword) throw PasswordsDoNotMatchException()
+        return userRepository.save(User(user?.id ?: 0, username, email, passwordEncoder.encode(password), role))
+    }
 }

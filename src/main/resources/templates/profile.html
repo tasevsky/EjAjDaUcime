@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Courses</title>
+    <!--    <link href="css/allCourses.css">-->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <style>
+        #sidebar-nav {
+            width: 25rem;
+        }
+
+        #sidebar-nav a {
+            background: #283342;
+        }
+
+        #sidebar {
+            width: 25rem;
+            background: #283342;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto px-0">
+            <div id="sidebar" class="collapse collapse-horizontal show border-end py-2">
+                <a href="#"
+                   class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white my-3"
+                   data-bs-parent="#sidebar"
+                   style="background: #1D242E; height: 5rem"><h2>ЕјАјДаУчиме</h2></a>
+                <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
+
+                    <a href="/home"
+                       class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white"
+                       data-bs-parent="#sidebar"><i class="bi bi-house mx-2"></i> <span>Почетна страна</span> </a>
+                    <a href="#"
+                       class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white"
+                       data-bs-parent="#sidebar"><i class="bi bi-bookmark-star mx-2"></i> <span>Мои курсеви</span></a>
+                    <a href="#"
+                       class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white"
+                       style="background: #2B829D"
+                       data-bs-parent="#sidebar"><i class="bi bi-file-earmark-person mx-2"></i> <span>Мој профил</span>
+                        <i class="bi bi-arrow-up-circle mx-2"></i></a>
+                    <a href="#"
+                       class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white"
+                       style="background: #1D242E"
+                       data-bs-parent="#sidebar"><i class="bi bi-pencil mx-2"></i></i> <span>Уреди профил</span></a>
+                    <a href="#"
+                       class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white"
+                       style="background: rgba(29, 36, 46, 0.5);"
+                       data-bs-parent="#sidebar"><i class="bi bi-award mx-2"></i> <span>Сертификати</span></a>
+                    <a href="#"
+                       class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white"
+                       data-bs-parent="#sidebar"><i class="bi bi-gear mx-2"></i> <span>Опции</span></a>
+                </div>
+            </div>
+        </div>
+        <main class="col ps-md-2 pt-2">
+            <nav
+                    class="navbar navbar-expand-lg navbar-light bg-light"
+            >
+                <div class="container-fluid">
+                    <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto">
+                            <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse"
+                               class="border rounded-3 p-1 text-decoration-none text-white"
+                               style="background: #2B829D;"><i class="bi bi-list bi-lg py-2 p-1"></i> <span
+                                    style="padding-right: 5px"> Menu </span></a>
+                            <form class="form-inline my-2 my-lg-0 mx-4">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                       aria-label="Search">
+                            </form>
+                        </ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item mx-5 text-center d-flex justify-content-center align-items-center">
+                                <i class="bi bi-file-earmark-font mx-2"></i>Македонски
+                            </li>
+                            <li class="nav-item text-dark text-center d-flex justify-content-center align-items-center">
+                                <th:block th:if="${#request.getRemoteUser() != null}"
+                                          th:text="${#request.getRemoteUser()}">milan
+                                </th:block>
+                            </li>
+                            <li class="nav-item mx-3">
+                                <a class="btn btn-danger d-flex" href="/logout">
+                                    Одјава
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="page-header pt-3 mx-4">
+                <h2>Уреди профил</h2>
+            </div>
+            <hr class="mx-4">
+            <div class="row mx-4">
+                <form method="post" action="/profile">
+                    <div class="form-group row">
+                        <label for="username" class="col-sm-2 col-form-label">Корисничко име</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext" id="username"
+                                   th:value="${user.getUsername()}" name="username">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-2 col-form-label">e-mail</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext" th:value="${user.getEmail()}" id="email"
+                                   name="email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password" class="col-sm-2 col-form-label">Лозинка</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control-plaintext" id="password" name="password"
+                                   placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="repeatedPassword" class="col-sm-2 col-form-label">Повтори лозинка</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control-plaintext" id="repeatedPassword"
+                                   name="repeatedPassword" placeholder="Password">
+                        </div>
+                    </div>
+                    <button class="btn btn-lg m-3" type="submit" style="background-color: #0FED7D; color: white">
+                        Потврди промена
+                    </button>
+                    <p class="text-danger">По промената, ќе бидете редиректирани за повторна најава</p>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
