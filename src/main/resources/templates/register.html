@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Register</title>
     <link href="css/login.css">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -17,9 +17,14 @@
     <div class="row">
         <div class="col-sm-6 text-white m-5">
             <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-                <form style="width: 23rem;" class="align-items-center" method="post" action="/login">
+                <form style="width: 23rem;" class="align-items-center" method="post" action="/register">
 
                     <h1 class="display-1 text-white">Најава</h1>
+
+                    <div class="form-outline mb-4">
+                        <input type="email" class="form-control form-control-lg"
+                               placeholder="email" id="email" name="email"/>
+                    </div>
 
                     <div class="form-outline mb-4">
                         <input type="text" class="form-control form-control-lg"
@@ -31,17 +36,20 @@
                                placeholder="Лозинка" id="password" name="password"/>
                     </div>
 
+                    <div class="form-outline mb-4">
+                        <input type="password" class="form-control form-control-lg"
+                               placeholder="Повтори лозинка" id="repeatedPassword" name="repeatedPassword"/>
+                    </div>
+
                     <div class="row">
                         <div class="col">
                             <button class="btn btn-lg" type="submit" style="background-color: #0FED7D; color: white">
-                                Најави се
+                                Регистрирај се
                             </button>
                         </div>
-                        <div class="col">
-                            <a href="/register">
-                                <button class="btn btn-lg" type="button"
-                                        style="background-color: #ED510F; color: white">Регистрација
-                                </button>
+                        <div class="col d-flex justify-content-center align-items-center">
+                            <a href="/login" style="color: #0FED7D; text-decoration: none">
+                                Кон најава
                             </a>
                         </div>
                     </div>

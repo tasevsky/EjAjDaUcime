@@ -18,4 +18,5 @@ spring:
       enabled: true
       location: ${java.io.tmpdir}
 
-
+  thymeleaf:
+    enabled: true

@@ -1,6 +1,6 @@
 package mk.ukim.finki.ejajdaucime.config
 
-import mk.ukim.finki.ejajdaucime.service.UserService
+import mk.ukim.finki.ejajdaucime.service.impl.UserServiceImpl
 import org.springframework.context.annotation.Bean
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.BadCredentialsException
@@ -19,9 +19,9 @@ fun getEncoder(): PasswordEncoder {
 }
 
 @Component
-class CustomUsernamePasswordAuthenticationProvider(userService: UserService) :
+class CustomUsernamePasswordAuthenticationProvider(userService: UserServiceImpl) :
     AuthenticationProvider {
-    private val userService: UserService
+    private val userService: UserServiceImpl
     private val passwordEncoder: PasswordEncoder
 
     init {

@@ -7,48 +7,28 @@ import mk.ukim.finki.ejajdaucime.model.exception.InvalidUsernameOrPasswordExcept
 import mk.ukim.finki.ejajdaucime.model.exception.PasswordsDoNotMatchException
 import mk.ukim.finki.ejajdaucime.model.exception.UsernameAlreadyExistsException
 import mk.ukim.finki.ejajdaucime.repository.UserRepository
-import mk.ukim.finki.ejajdaucime.service.UserService
-import org.springframework.context.annotation.Bean
-import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.core.userdetails.UsernameNotFoundException
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import mk.ukim.finki.ejajdaucime.security.UserDetailsServiceImpl
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 
 @Service
 class UserServiceImpl(userRepository: UserRepository) :
-    UserService {
-    private val userRepository: UserRepository
-    private val passwordEncoder: PasswordEncoder
+    UserDetailsServiceImpl(userRepository) {
+    private val passwordEncoder: PasswordEncoder = getEncoder()
 
-    init {
-        this.userRepository = userRepository
-        this.passwordEncoder = getEncoder()
-    }
-
-    override fun register(
+   fun register(
         username: String?,
         email: String,
         password: String?,
-        repeatPassword: String?,
-        name: String?,
-        surname: String?,
+        repeatedPassword: String?,
         role: Role
     ): User? {
         if (username == null || username.isEmpty() || password == null || password.isEmpty()) throw InvalidUsernameOrPasswordException()
-        if (password != repeatPassword) throw PasswordsDoNotMatchException()
-        if (userRepository.findByUsername(username)?.isPresent() == true) throw UsernameAlreadyExistsException(username)
+        if (password != repeatedPassword) throw PasswordsDoNotMatchException()
+        if (userRepository.findByUsername(username)?.isPresent == true) throw UsernameAlreadyExistsException(username)
         val user = User(0, username, email, passwordEncoder.encode(password), role)
         return userRepository.save(user)
     }
 
-    @Throws(UsernameNotFoundException::class)
-    override fun loadUserByUsernameNew(s: String): User? {
-        return userRepository.findByUsername(s)?.orElseThrow { UsernameNotFoundException(s) }
-    }
-
-    override fun loadUserByUsername(username: String?): UserDetails {
-        TODO("Not yet implemented")
-    }
 }
