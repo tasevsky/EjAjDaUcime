@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Current course</title>
+    <title>Test expert</title>
     <!--    <link href="css/allCourses.css">-->
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -26,6 +26,18 @@
             background: #283342;
         }
     </style>
+    <script>
+        const answeredQs = {0: 0, 1: 0, 2: 0};
+        function progress(arg1) {
+            console.log(answeredQs);
+            answeredQs[arg1] = 1;
+            current = (answeredQs[0] + answeredQs[1] + answeredQs[2]) / 3 * 100;
+            document.getElementById("progressQuiz").style.width = current + '%'
+            document.getElementById("progressQuiz").setAttribute("text", current + '%')
+            return answeredQs;
+        }
+
+    </script>
 </head>
 <body>
 
@@ -33,30 +45,24 @@
     <div class="row flex-nowrap">
         <div class="col-auto px-0">
             <div id="sidebar" class="collapse collapse-horizontal show border-end py-2">
-                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white my-3"
+                <a href="#"
+                   class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white my-3"
                    data-bs-parent="#sidebar"
                    style="background: #1D242E; height: 5rem"><h2>ЕјАјДаУчиме</h2></a>
                 <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
 
                     <a href="/home"
                        class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white"
-                       data-bs-parent="#sidebar"><i class="bi bi-house mx-2"></i> <span>Почетна страна</span> </a>
+                       data-bs-parent="#sidebar"
+                    ><i class="bi bi-house mx-2"></i> <span>Почетна страна</span> </a>
                     <a href="/myCourses"
                        class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white"
+                       style="background: #2B829D"
                        data-bs-parent="#sidebar"><i class="bi bi-bookmark-star mx-2"></i> <span>Мои курсеви</span></a>
                     <a href="/profile"
                        class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white"
-                       style="background: #2B829D"
                        data-bs-parent="#sidebar"><i class="bi bi-file-earmark-person mx-2"></i> <span>Мој профил</span>
-                        <i class="bi bi-arrow-up-circle mx-2"></i></a>
-                    <a href="/profile"
-                       class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white"
-                       style="background: rgba(29, 36, 46, 0.5);"
-                       data-bs-parent="#sidebar"><i class="bi bi-pencil mx-2"></i></i> <span>Уреди профил</span></a>
-                    <a href="/certificates"
-                       class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white"
-                       style="background: #1D242E"
-                       data-bs-parent="#sidebar"><i class="bi bi-award mx-2"></i> <span>Сертификати</span></a>
+                        <i class="bi bi-arrow-down-circle mx-2"></i></a>
                     <a href="#"
                        class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white"
                        data-bs-parent="#sidebar"><i class="bi bi-gear mx-2"></i> <span>Опции</span></a>
@@ -80,9 +86,11 @@
                         <ul class="navbar-nav me-auto">
                             <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse"
                                class="border rounded-3 p-1 text-decoration-none text-white"
-                               style="background: #2B829D;"><i class="bi bi-list bi-lg py-2 p-1"></i> <span style="padding-right: 5px"> Мени </span></a>
+                               style="background: #2B829D;"><i class="bi bi-list bi-lg py-2 p-1"></i> <span
+                                    style="padding-right: 5px"> Мени </span></a>
                             <form class="form-inline my-2 my-lg-0 mx-4">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                       aria-label="Search">
                             </form>
                         </ul>
                         <ul class="navbar-nav">
@@ -91,7 +99,8 @@
                             </li>
                             <li class="nav-item text-dark text-center d-flex justify-content-center align-items-center">
                                 <th:block th:if="${#request.getRemoteUser() != null}"
-                                          th:text="${#request.getRemoteUser()}">milan</th:block>
+                                          th:text="${#request.getRemoteUser()}">milan
+                                </th:block>
                             </li>
                             <li class="nav-item mx-3">
                                 <a class="btn btn-danger d-flex" href="/logout">
@@ -103,20 +112,50 @@
                 </div>
             </nav>
             <div class="page-header pt-3 mx-4">
-                <h2>Сертификати</h2>
+                <div class="row">
+                    <div class="col">
+                        <h2>Вовед во вештачка интелигенција за експерти</h2>
+                        <h5>Внимателно прочитајте и одговорете ги прашањата</h5>
+                    </div>
+                    <div class="col justify-content-center align-items-center">
+                        <div class="progress m-4">
+                            <div id="progressQuiz" class="progress-bar bg-danger active" role="progressbar"
+                                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <hr class="mx-4">
             <div class="row mx-4">
-                <div class="section-title">
-                    <h4 th:if="${passed==true}">Успешно го реализиравте тестот на напредни знаења, во прилог е вашиот сертификат</h4>
-                    <h5 th:if="${passed==true}" th:text="${'Број на освоени поени: '+points}"></h5>
-                    <h4 th:if="${passed==false}">Немате доволно поени. Обидете се повторно?</h4>
-                </div>
+                <form method="post" action="/tests/certificate">
+                    <div class="accordion-list">
+                        <ul>
+                            <li th:each="numQ: ${range}">
+                                <a data-bs-toggle="collapse" class="collapse"
+                                   data-bs-target="#accordion-list-1"><span></span>
+                                    <h3 th:text="${questions[numQ].question}"></h3>
+                                    <i class="bx bx-chevron-down icon-show"></i><i
+                                            class="bx bx-chevron-up icon-close"></i></a>
 
-                <div class="row">
-                    <div th:if="${passed==true}" class="pic"><img th:src="@{../assets/certificate.png}"
-                                                                  class="img-fluid" alt=""></div>
-                </div>
+                                <div th:onclick="'javascript:progress(\'' + ${numQ} + '\');'"
+                                     th:each="numA: ${range}" class="form-check">
+                                    <input class="form-check-input" type="checkbox" name='checkboxName'
+                                           id="questions[numQ]" th:value="${numQ + '-'+ numA}">
+                                    <label class="form-check-label"
+                                           th:text="${questions[numQ].answers.getAllOptions()[numA]}"
+                                           for="questions[numQ]"></label>
+                                    <br>
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row d-flex justify-content-center justify-content-lg-center">
+                        <button class="col-lg-6 btn btn-success" style="color: white ">ЗАВРШИ</button>
+                    </div>
+
+                </form>
             </div>
         </main>
     </div>
