@@ -23,15 +23,17 @@
 
         #sidebar {
             width: 25rem;
+            height: 100%;
             background: #283342;
         }
     </style>
     <script>
-        const answeredQs = {0: 0, 1: 0, 2: 0};
+        const answeredQs = {0: 0, 1: 0, 2: 0, 3: 0};
+
         function progress(arg1) {
             console.log(answeredQs);
             answeredQs[arg1] = 1;
-            current = (answeredQs[0] + answeredQs[1] + answeredQs[2]) / 3 * 100;
+            current = (answeredQs[0] + answeredQs[1] + answeredQs[2] + answeredQs[3]) / 4 * 100;
             document.getElementById("progressQuiz").style.width = current + '%'
             document.getElementById("progressQuiz").setAttribute("text", current + '%')
             return answeredQs;
@@ -50,8 +52,10 @@
                    data-bs-parent="#sidebar"
                    style="background: #1D242E; height: 5rem">
                     <div class="col-2">
-                        <img class="m-1 w-75 h-75" th:src="@{https://raw.githubusercontent.com/tasevsky/EjAjDaUcime/main/src/main/resources/assets/logo.png}">
-                    </div><h2>ЕјАјДаУчиме</h2></a>
+                        <img class="m-1 w-75 h-75"
+                             th:src="@{https://raw.githubusercontent.com/tasevsky/EjAjDaUcime/main/src/main/resources/assets/logo.png}">
+                    </div>
+                    <h2>ЕјАјДаУчиме</h2></a>
                 <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
 
                     <a href="/home"
@@ -134,13 +138,10 @@
                 <form method="post" action="/tests/certificate">
                     <div class="accordion-list">
                         <ul>
-                            <li th:each="numQ: ${range}">
-                                <a data-bs-toggle="collapse" class="collapse"
-                                   data-bs-target="#accordion-list-1"><span></span>
-                                    <h3 th:text="${questions[numQ].question}"></h3>
-                                    <i class="bx bx-chevron-down icon-show"></i><i
-                                            class="bx bx-chevron-up icon-close"></i></a>
-
+                            <li th:each="numQ: ${range}" class="my-3">
+                                <h5 th:text="${questions[numQ].question}"></h5>
+                                <img th:if="${numQ}==1" src="https://cdn.qualitygurus.com/wp-content/uploads/2022/01/Regression-quiz-02.png?compress=true&quality=80&w=900&dpr=1.0">
+                                <img th:if="${numQ}==2" src="https://cdn.qualitygurus.com/wp-content/uploads/2022/01/Regression-quiz-01.png?compress=true&quality=80&w=576&dpr=1.0">
                                 <div th:onclick="'javascript:progress(\'' + ${numQ} + '\');'"
                                      th:each="numA: ${range}" class="form-check">
                                     <input class="form-check-input" type="checkbox" name='checkboxName'
@@ -154,10 +155,9 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="row d-flex justify-content-center justify-content-lg-center">
+                    <div class="row d-flex justify-content-center justify-content-lg-center my-5">
                         <button class="col-lg-6 btn btn-success" style="color: white ">ЗАВРШИ</button>
                     </div>
-
                 </form>
             </div>
         </main>

@@ -33,6 +33,8 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+	implementation("org.xhtmlrenderer:flying-saucer-pdf:9.1.22")
+	implementation("commons-io:commons-io:2.11.0")
 }
 
 tasks.withType<KotlinCompile> {

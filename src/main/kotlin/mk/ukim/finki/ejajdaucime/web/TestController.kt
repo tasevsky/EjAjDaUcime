@@ -15,9 +15,10 @@ class TestController(private val testService: TestService) {
 
     @GetMapping("/eksperti")
     fun getTestExperts(model: Model): String? {
-        val range = listOf(0, 1, 2)
+        val range = listOf(0, 1, 2, 3)
         model.addAttribute("range", range)
-        model.addAttribute("questions", this.testService.findById(1L)!!.get().questions)
+        model.addAttribute("questions", this.testService.findById(2L)!!.get().questions)
+        println(this.testService.findById(2L)!!.get().questions)
         return "testEksperti"
     }
 
@@ -28,7 +29,7 @@ class TestController(private val testService: TestService) {
     ): String? {
         var result = -1.0
         if (checkboxValue != null) {
-            result = testService.isPassedWithId(1L, checkboxValue)
+            result = testService.isPassedWithId(2L, checkboxValue)
         }
         if (result != -1.0) {
             model.addAttribute("passed", true)

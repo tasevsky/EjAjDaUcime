@@ -38,8 +38,10 @@
                    data-bs-parent="#sidebar"
                    style="background: #1D242E; height: 5rem">
                     <div class="col-2">
-                        <img class="m-1 w-75 h-75" th:src="@{https://raw.githubusercontent.com/tasevsky/EjAjDaUcime/main/src/main/resources/assets/logo.png}">
-                    </div><h2>ЕјАјДаУчиме</h2></a>
+                        <img class="m-1 w-75 h-75"
+                             th:src="@{https://raw.githubusercontent.com/tasevsky/EjAjDaUcime/main/src/main/resources/assets/logo.png}">
+                    </div>
+                    <h2>ЕјАјДаУчиме</h2></a>
                 <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
 
                     <a href="/home"
@@ -84,9 +86,11 @@
                         <ul class="navbar-nav me-auto">
                             <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse"
                                class="border rounded-3 p-1 text-decoration-none text-white"
-                               style="background: #2B829D;"><i class="bi bi-list bi-lg py-2 p-1"></i> <span style="padding-right: 5px"> Мени </span></a>
+                               style="background: #2B829D;"><i class="bi bi-list bi-lg py-2 p-1"></i> <span
+                                    style="padding-right: 5px"> Мени </span></a>
                             <form class="form-inline my-2 my-lg-0 mx-4">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                       aria-label="Search">
                             </form>
                         </ul>
                         <ul class="navbar-nav">
@@ -95,7 +99,8 @@
                             </li>
                             <li class="nav-item text-dark text-center d-flex justify-content-center align-items-center">
                                 <th:block th:if="${#request.getRemoteUser() != null}"
-                                          th:text="${#request.getRemoteUser()}">milan</th:block>
+                                          th:text="${#request.getRemoteUser()}">milan
+                                </th:block>
                             </li>
                             <li class="nav-item mx-3">
                                 <a class="btn btn-danger d-flex" href="/logout">
@@ -112,15 +117,36 @@
             <hr class="mx-4">
             <div class="row mx-4">
                 <div class="section-title">
-                    <h4 th:if="${passed==true}">Успешно го реализиравте тестот на напредни знаења, во прилог е вашиот сертификат</h4>
+                    <h4 th:if="${passed==true}">Успешно го реализиравте тестот на напредни знаења, во прилог се вашите
+                        сертификати</h4>
                     <h5 th:if="${passed==true}" th:text="${'Број на освоени поени: '+points}"></h5>
-                    <h4 th:if="${passed==false}">Немате доволно поени. Обидете се повторно?</h4>
+                    <h4 th:if="${passed==false}">Немате доволно поени. <a href="/tests/eksperti"
+                                                                          class="text-decoration-none">Обидете се
+                        повторно?</a></h4>
                 </div>
                 <div class="row">
-                    <div th:if="${passed==true}" class="pic"><img th:src="@{https://raw.githubusercontent.com/tasevsky/EjAjDaUcime/1777c45a866921f5e3f8f65ab8f56c19b78e91a7/src/main/resources/assets/certificate.png}" class="img-fluid" alt=""></div>
+                    <div class="col">
+                        <div class="pic m-1 w-75 h-75"><img
+                                th:src="@{https://raw.githubusercontent.com/tasevsky/EjAjDaUcime/main/src/main/resources/assets/certificate_basic.PNG}"
+                                class="img-fluid" alt=""></div>
+                    </div>
+                    <div class="col">
+                        <div th:if="${passed==true}" class="pic m-1 w-75 h-75"><img
+                                th:src="@{https://raw.githubusercontent.com/tasevsky/EjAjDaUcime/main/src/main/resources/assets/certificate_test.PNG}"
+                                class="img-fluid" alt=""></div>
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="pic"><img th:src="@{https://raw.githubusercontent.com/tasevsky/EjAjDaUcime/1777c45a866921f5e3f8f65ab8f56c19b78e91a7/src/main/resources/assets/certificate.png}" class="img-fluid" alt=""></div>
+                    <div class="col">
+                        <a href="/certificates/downloadBasicCertificate">
+                            <button type="button" class="btn btn-outline-primary mx-5">Симни основен сертификат</button>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <button th:if="${passed==true}" type="button" class="btn btn-outline-primary mx-5">Симни
+                            сертификат со тест
+                        </button>
+                    </div>
                 </div>
             </div>
         </main>
