@@ -33,9 +33,13 @@
     <div class="row flex-nowrap">
         <div class="col-auto px-0">
             <div id="sidebar" class="collapse collapse-horizontal show border-end py-2">
-                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white my-3"
+                <a href="/home"
+                   class="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-center align-items-center text-white my-3"
                    data-bs-parent="#sidebar"
-                   style="background: #1D242E; height: 5rem"><h2>ЕјАјДаУчиме</h2></a>
+                   style="background: #1D242E; height: 5rem">
+                    <div class="col-2">
+                        <img class="m-1 w-75 h-75" th:src="@{https://raw.githubusercontent.com/tasevsky/EjAjDaUcime/main/src/main/resources/assets/logo.png}">
+                    </div><h2>ЕјАјДаУчиме</h2></a>
                 <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
 
                     <a href="/home"
@@ -112,10 +116,11 @@
                     <h5 th:if="${passed==true}" th:text="${'Број на освоени поени: '+points}"></h5>
                     <h4 th:if="${passed==false}">Немате доволно поени. Обидете се повторно?</h4>
                 </div>
-
                 <div class="row">
-                    <div th:if="${passed==true}" class="pic"><img th:src="@{../assets/certificate.png}"
-                                                                  class="img-fluid" alt=""></div>
+                    <div th:if="${passed==true}" class="pic"><img th:src="@{https://raw.githubusercontent.com/tasevsky/EjAjDaUcime/1777c45a866921f5e3f8f65ab8f56c19b78e91a7/src/main/resources/assets/certificate.png}" class="img-fluid" alt=""></div>
+                </div>
+                <div class="row">
+                    <div class="pic"><img th:src="@{https://raw.githubusercontent.com/tasevsky/EjAjDaUcime/1777c45a866921f5e3f8f65ab8f56c19b78e91a7/src/main/resources/assets/certificate.png}" class="img-fluid" alt=""></div>
                 </div>
             </div>
         </main>
